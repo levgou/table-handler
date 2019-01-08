@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM bigtruedata/sbt
 
 RUN mkdir -p /app-src
 
