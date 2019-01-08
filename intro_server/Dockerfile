@@ -10,4 +10,5 @@ COPY public/ /app-src
 EXPOSE 9000
 
 # CMD rm -f /dist/RUNNING_PID && /dist/bin/start -Dhttp.port=$PORT -Dplay.crypto.secret=secret
-CMD ls -s /app-src
+WORKDIR /app-src
+CMD sbt 'run $PORT'
