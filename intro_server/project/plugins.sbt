@@ -1,5 +1,8 @@
 logLevel := Level.Warn
 
-resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/ivy-releases/"
+//resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
+//https://maven.atlassian.com/maven-external/com/typesafe/play/sbt-plugin_2.10_0.13
 
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.10")
+resolvers += Resolver.typesafeRepo("releases")
+
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.20")
