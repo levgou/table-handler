@@ -6,6 +6,7 @@ logLevel := Level.Warn
 
 //resolvers += Resolver.typesafeRepo("releases")
 //resolvers += Resolver.typesafeIvyRepo("https://https://dl.bintray.com/sbt/sbt-plugin-releases/")
+resolvers += "Typesafe repository" at
+    "http://repo.typesafe.com/typesafe/releases/"
 
-resolvers  += "Online Play Repository" at "http://repo.typesafe.com/typesafe/simple/maven-releases/"
 addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.20")
