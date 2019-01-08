@@ -17,4 +17,4 @@ resolvers += "Typesafe repository" at " https://repo1.maven.org/maven2"
 //resolvers += Resolver.url("Typesafe repository", url(" https://repo1.maven.org/maven2/com/typesafe/play"))(Resolver.mavenStylePatterns)
 
 
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.20")
+addSbtPlugin("com.typesafe.play" %% "sbt-plugin" % "2.6.20")
