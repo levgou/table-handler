@@ -8,7 +8,7 @@ resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
       
 resolvers += "Akka Snapshot Repository" at "http://repo.akka.io/snapshots/"
 
-resolvers += "Typesafe repository" at "https://repo.typesafe.com/typesafe/ivy-releases/"
+//resolvers += "Typesafe repository" at "https://repo.typesafe.com/typesafe/ivy-releases/"
 
 
 scalaVersion := "2.12.2"
