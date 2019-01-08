@@ -6,8 +6,8 @@ logLevel := Level.Warn
 
 //resolvers += Resolver.typesafeRepo("releases")
 //resolvers += Resolver.typesafeIvyRepo("https://https://dl.bintray.com/sbt/sbt-plugin-releases/")
-resolvers += "Typesafe repository" at
-    "http://repo.typesafe.com/typesafe/ivy-releases/"
+//resolvers += "Typesafe repository" at
+//    "http://repo.typesafe.com/typesafe/ivy-releases/"
 
 //resolvers += "Typesafe Releases" at "https://repo.typesafe.com/typesafe/releases/"
 //
