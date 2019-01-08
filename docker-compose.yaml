@@ -2,7 +2,7 @@ version: "3"
 
 services:
   server:
-    build: ./intro_server
+    build: https://github.com/levgou/table-handler.git#master:intro_server
     ports:
       - 9000:9000
     environment:
