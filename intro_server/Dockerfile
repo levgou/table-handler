@@ -33,15 +33,18 @@ echo "case object Temp" > Temp.scala && \
 sbt compile && \
 rm -r project && rm build.sbt && rm Temp.scala && rm -r target
 
-RUN mkdir -p /app-src
+RUN sbt new playframework/play-scala-seed.g8
 
-COPY app/ /app-src
-COPY conf/ /app-src
-COPY project/ /app-src
-COPY public/ /app-src
+# RUN mkdir -p /app-src
 
-EXPOSE 9000
+# COPY app/ /app-src
+# COPY conf/ /app-src
+# COPY project/ /app-src
+# COPY public/ /app-src
+
+# EXPOSE 9000
 
 # CMD rm -f /dist/RUNNING_PID && /dist/bin/start -Dhttp.port=$PORT -Dplay.crypto.secret=secret
 WORKDIR /app-src
-CMD sbt 'run $PORT'
+# CMD sbt 'run $PORT'
+CMD ls
