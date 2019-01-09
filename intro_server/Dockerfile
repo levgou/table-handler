@@ -9,7 +9,7 @@ FROM openjdk:8
 
 # Env variables
 ENV SCALA_VERSION 2.12.2
-ENV SBT_VERSION 0.13.17
+ENV SBT_VERSION 1.2.8
 
 # Install Scala
 ## Piping curl directly in tar
@@ -33,18 +33,14 @@ echo "case object Temp" > Temp.scala && \
 sbt compile && \
 rm -r project && rm build.sbt && rm Temp.scala && rm -r target
 
-RUN sbt new playframework/play-scala-seed.g8
+RUN mkdir -p /app-src
 
-# RUN mkdir -p /app-src
+COPY app/ /app-src
+COPY conf/ /app-src
+COPY project/ /app-src
+COPY public/ /app-src
 
-# COPY app/ /app-src
-# COPY conf/ /app-src
-# COPY project/ /app-src
-# COPY public/ /app-src
+EXPOSE 9000
 
-# EXPOSE 9000
-
-# CMD rm -f /dist/RUNNING_PID && /dist/bin/start -Dhttp.port=$PORT -Dplay.crypto.secret=secret
 WORKDIR /app-src
-# CMD sbt 'run $PORT'
-CMD ls
+CMD sbt 'run $PORT'
