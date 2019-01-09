@@ -1,37 +1,36 @@
-#
-# Scala and sbt Dockerfile
-#
-# https://github.com/hseeberger/scala-sbt
-#
+FROM openjdk:8-jdk-alpine
 
-# Pull base image
-FROM openjdk:8
-
-# Env variables
 ENV SCALA_VERSION 2.12.6
+ENV SCALA_HOME /usr/share/scala
+
 ENV SBT_VERSION 0.13.17
 
-# Install Scala
-## Piping curl directly in tar
-RUN \
-curl -fsL https://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz | tar xfz - -C /root/ && \
-echo >> /root/.bashrc && \
-echo "export PATH=~/scala-$SCALA_VERSION/bin:$PATH" >> /root/.bashrc
+# Install Bash
+RUN apk add --no-cache bash
 
-# Install sbt
 RUN \
-curl -L -o sbt-$SBT_VERSION.deb https://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb && \
-dpkg -i sbt-$SBT_VERSION.deb && \
-rm sbt-$SBT_VERSION.deb && \
-apt-get update && \
-apt-get install sbt && \
+apk add --no-cache --virtual=build-dependencies wget ca-certificates && \
+cd "/tmp" && \
+
+ # Install Scala
+wget "https://downloads.typesafe.com/scala/${SCALA_VERSION}/scala-${SCALA_VERSION}.tgz" && \
+tar xzf "scala-${SCALA_VERSION}.tgz" && \
+mkdir "${SCALA_HOME}" && \
+rm "/tmp/scala-${SCALA_VERSION}/bin/"*.bat && \
+mv "/tmp/scala-${SCALA_VERSION}/bin" "/tmp/scala-${SCALA_VERSION}/lib" "${SCALA_HOME}" && \
+ln -s "${SCALA_HOME}/bin/"* "/usr/bin/" && \
+
+# Install SBT
+wget "https://dl.bintray.com/sbt/native-packages/sbt/${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" && \
+tar -f "sbt-${SBT_VERSION}.tgz" -x -C /usr/local && \
+ln -s /usr/local/sbt/bin/sbt /usr/local/bin/sbt && \
 sbt sbtVersion && \
-mkdir project && \
-echo "scalaVersion := \"${SCALA_VERSION}\"" > build.sbt && \
-echo "sbt.version=${SBT_VERSION}" > project/build.properties && \
-echo "case object Temp" > Temp.scala && \
-sbt compile && \
-rm -r project && rm build.sbt && rm Temp.scala && rm -r target
+
+# Clean up
+apk del build-dependencies && \
+rm -rf /tmp/*
+
+# ------------------------------------------
 
 RUN mkdir -p /app-src
 
