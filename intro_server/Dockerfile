@@ -21,7 +21,7 @@ mv "/tmp/scala-${SCALA_VERSION}/bin" "/tmp/scala-${SCALA_VERSION}/lib" "${SCALA_
 ln -s "${SCALA_HOME}/bin/"* "/usr/bin/" && \
 
 # Install SBT
-wget "https://dl.bintray.com/sbt/native-packages/sbt/${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" && \
+wget "https://piccolo.link/sbt-${SBT_VERSION}.tgz" && \
 tar -f "sbt-${SBT_VERSION}.tgz" -x -C /usr/local && \
 ln -s /usr/local/sbt/bin/sbt /usr/local/bin/sbt && \
 sbt sbtVersion && \
