@@ -34,10 +34,10 @@ rm -rf /tmp/*
 
 RUN mkdir -p /app-src
 
-COPY app/ /app-src
-COPY conf/ /app-src
-COPY project/ /app-src
-COPY public/ /app-src
+COPY app /app-src
+COPY conf /app-src
+COPY project /app-src
+COPY public /app-src
 COPY build.sbt /app-src
 
 EXPOSE 9000
