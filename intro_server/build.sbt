@@ -1,6 +1,8 @@
 name := "intro"
- 
+
 version := "1.0" 
+
+logLevel := Level.Info
       
 lazy val `intro` = (project in file(".")).enablePlugins(PlayScala)
 

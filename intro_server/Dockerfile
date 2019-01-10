@@ -30,18 +30,22 @@ sbt sbtVersion && \
 apk del build-dependencies && \
 rm -rf /tmp/*
 
-# ------------------------------------------
+# Bashrc
+COPY bashrc.bash ~/.bashrc
+
+# Install Server App
 
 RUN mkdir -p /app-src
 
-COPY app /app-src
-COPY conf /app-src
-COPY project /app-src
-COPY public /app-src
+COPY app /app-src/app
+COPY conf /app-src/conf
+COPY project /app-src/project
+COPY public /app-src/public
 COPY build.sbt /app-src
 
 EXPOSE 9000
 
 WORKDIR /app-src
-CMD ls -l /app-src && sbt 'run $PORT'
-# CMD pwd && ls -l /app-src
+RUN sbt compile
+
+CMD ls -l /app-src && sbt "run 9000"
