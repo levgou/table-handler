@@ -2,20 +2,24 @@ version: "3"
 
 services:
   server-base:
-    build: https://github.com/levgou/table-handler.git#master:intro_server
-    dockerfile: Dockerfile.ServerBase
+    build: 
+      context: https://github.com/levgou/table-handler.git#master:intro_server
+      dockerfile: Dockerfile.ServerBase
+
     image: table_handler/server_base
-  
+
   server:
-    build: https://github.com/levgou/table-handler.git#master:intro_server
-    dockerfile: Dockerfile.Server
+    build: 
+      context: https://github.com/levgou/table-handler.git#master:intro_server
+      dockerfile: Dockerfile.Server
+
     ports:
       - 9000:9000
     environment:
       - OFFLINE_TABLE=1
       - PORT=9000
     stdin_open: true
-  
+
     # volumes:
     # - ./intro_server:/app-src
 
