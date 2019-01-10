@@ -38,8 +38,10 @@ COPY app/ /app-src
 COPY conf/ /app-src
 COPY project/ /app-src
 COPY public/ /app-src
+COPY build.sbt /app-src
 
 EXPOSE 9000
 
 WORKDIR /app-src
 CMD sbt 'run $PORT'
+# CMD pwd && ls -l /app-src
