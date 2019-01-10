@@ -46,6 +46,9 @@ COPY build.sbt /app-src
 EXPOSE 9000
 
 WORKDIR /app-src
+
+RUN sbt update
+
 RUN sbt compile
 
 CMD sbt "run $PORT"
