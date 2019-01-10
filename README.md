@@ -1,5 +1,6 @@
 
-# Server <img src="https://img.icons8.com/color/48/000000/docker.png" width="40"/> <img src="https://cdn.iconscout.com/icon/free/png-256/scala-226059.png" width="35"/> <img src="https://cdn-images-1.medium.com/max/1600/1*N0AUKlttflxzr8Ij-DfC7Q.png" width="60"/>
+# Server <img src="https://img.icons8.com/color/48/000000/docker.png" width="40"/> <img src="https://cdn.iconscout.com/icon/free/png-256/scala-226059.png" width="35"/> <img src="https://cdn-images-1.medium.com/max/1600/1*N0AUKlttflxzr8Ij-DfC7Q.png" width="60"/> <img src="https://img.icons8.com/color/1600/mongodb.png" width="40"/>
+
 
 ## Quick Setup
 1. Install `docker` on your local machine
