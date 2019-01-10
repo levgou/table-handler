@@ -51,4 +51,4 @@ RUN sbt update
 
 RUN sbt compile
 
-CMD "sleep 10"
+CMD vi
