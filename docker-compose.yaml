@@ -8,12 +8,14 @@ services:
     environment:
       - OFFLINE_TABLE=1
       - PORT=9000
+
+    # image: table_handler/server_base
     # volumes:
     # - ./intro_server:/app-src
 
 
-  db:
-    image: mongo:4
-    ports:
-      - 27017:27017
-    command: mongod --smallfiles
+  # db:
+  #   image: mongo:4
+  #   ports:
+  #     - 27017:27017
+  #   command: mongod --smallfiles

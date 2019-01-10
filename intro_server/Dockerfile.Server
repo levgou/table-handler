@@ -1,0 +1,5 @@
+FROM table_handler/server_base
+
+RUN sbt compile
+
+CMD sbt "run $PORT"
