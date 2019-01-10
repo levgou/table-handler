@@ -51,4 +51,4 @@ RUN sbt update
 
 RUN sbt compile
 
-CMD "while 1; do echo hi; done"
+CMD sbt run
