@@ -48,4 +48,4 @@ EXPOSE 9000
 WORKDIR /app-src
 RUN sbt compile
 
-CMD ls -l /app-src && sbt "run 9000"
+CMD sbt "run $PORT"

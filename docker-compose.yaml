@@ -8,6 +8,9 @@ services:
     environment:
       - OFFLINE_TABLE=1
       - PORT=9000
+    # volumes:
+    # - ./intro_server:/app-src
+
 
   db:
     image: mongo:4
