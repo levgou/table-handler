@@ -1,3 +1,3 @@
-logLevel := Level.Info
+logLevel := Level.Debug
 
 addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.21")
