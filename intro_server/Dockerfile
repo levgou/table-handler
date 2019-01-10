@@ -43,5 +43,5 @@ COPY build.sbt /app-src
 EXPOSE 9000
 
 WORKDIR /app-src
-CMD sbt 'run $PORT'
+CMD ls -l /app-src && sbt 'run $PORT'
 # CMD pwd && ls -l /app-src
