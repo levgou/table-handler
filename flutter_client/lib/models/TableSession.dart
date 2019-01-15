@@ -14,16 +14,31 @@ class TableSession {
     cart = List<String>.from(json['cart']);
   }
 
-  get unownedItems {
+  List<Item> get unownedItems {
     return this.items.where((item) {
       return item.status == "PENDING";
     }).toList();
   }
 
-  get myCartItems {
+  List<Item> get userCartItems {
     return this.items.where((item) {
       return this.cart.contains(item.id);
     }).toList();
+  }
+
+  removeFromCart(Item item) {
+    item.status = 'PENDING';
+    cart.remove(item.id);
+  }
+
+  addToCart(Item item) {
+    item.status = 'IN_CART';
+    cart.add(item.id);
+  }
+
+  int get userTotalCartPrice {
+    return userCartItems.fold(0, (total, item) => total += item.totalPrice);
+  
   }
 
   Map toJson() {

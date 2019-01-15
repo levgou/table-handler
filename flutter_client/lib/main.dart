@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rest_in_peace/screens/homepage.dart';
-import 'package:rest_in_peace/screens/ordered_items.dart';
+import 'package:rest_in_peace/screens/orderedItems/ordered_items.dart';
 import 'package:rest_in_peace/utils/theme.dart';
 
 void main() => runApp(MyApp());
