@@ -1,30 +1,30 @@
 version: "3"
 
 services:
-  server-base:
-    build: 
-      context: https://github.com/levgou/table-handler.git#master:intro_server
-      dockerfile: Dockerfile.ServerBase
+    server-base:
+        build:
+            context: https://github.com/levgou/table-handler.git#master:intro_server
+            dockerfile: Dockerfile.ServerBase
 
-    image: table_handler/server_base
+        image: table_handler/server_base
 
-  server:
-    build: 
-      context: https://github.com/levgou/table-handler.git#master:intro_server
-      dockerfile: Dockerfile.Server
+    server:
+        build:
+            context: https://github.com/levgou/table-handler.git#master:intro_server
+            dockerfile: Dockerfile.Server
 
-    ports:
-      - 9000:9000
-    environment:
-      - OFFLINE_TABLE=1
-      - PORT=9000
-    stdin_open: true
+        ports:
+            - 9000:9000
+        environment:
+            - OFFLINE_TABLE=1
+            - PORT=9000
+        stdin_open: true
 
-    # volumes:
-    # - ./intro_server:/app-src
+#        volumes:
+#            - ./intro_server:/app-src
 
-  db:
-    image: mongo:4
-    ports:
-      - 27017:27017
-    command: mongod --smallfiles
+    db:
+        image: mongo:4
+        ports:
+            - 27017:27017
+        command: mongod --smallfiles

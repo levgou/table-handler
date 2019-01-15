@@ -4,27 +4,33 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET         /                    controllers.HomeController.index
+GET         /                          controllers.HomeController.index
 
 
 # my
-GET         /table/:id           controllers.TableController.get(id: Long)
+GET         /table/:id                 controllers.TableController.get(id: Long)
 
 
 # my
-POST        /table               controllers.TableController.save
+POST        /table                     controllers.TableController.save
 
 
 # my
-GET         /db/:msg             controllers.DBController.get(msg: String)
+GET         /db/:msg                   controllers.DBController.get(msg: String)
+
+# my
+GET         /tables/customer/ws        controllers.TableCustomerController.socket
+
+
+
 
 
 # An example controller showing how to use dependency injection
-GET         /count               controllers.CountController.count
+GET         /count                     controllers.CountController.count
 # An example controller showing how to write asynchronous code
-GET         /message             controllers.AsyncController.message
+GET         /message                   controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file        controllers.Assets.versioned(path="/public", file: Asset)
+GET         /assets/*file              controllers.Assets.versioned(path="/public", file: Asset)
 
       
