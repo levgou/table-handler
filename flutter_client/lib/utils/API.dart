@@ -5,7 +5,7 @@ const baseUrl = "https://my-json-server.typicode.com";
 
 class API {
   static Future getTable(String tableId) {
-    var url = baseUrl + "/poseneror/rest/tables/" + tableId;
+    var url = baseUrl + "/levgou/table-handler/tables/" + tableId;
     return http.get(url);
   }
 }
