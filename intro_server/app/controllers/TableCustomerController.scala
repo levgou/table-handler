@@ -15,6 +15,19 @@ import services.TableCustomerServiceActor
 @Singleton
 class TableCustomerController @Inject()(cc: ControllerComponents)(implicit system: ActorSystem, mat: Materializer)
     extends AbstractController(cc) {
+
+
+    def requestSocket(clientId: String, businessId: String, tableId: String): WebSocket =
+        WebSocket.accept[String, String] { request =>
+
+            // Create a flow that is handled by an actor
+            // Accepts a function[ActorRef => Props] that creates the props for actor to handle the flow.
+            ActorFlow.actorRef { out =>
+                TableCustomerServiceActor.props(out, clientId, businessId, tableId)
+            }
+        }
+
+
     /*
      returns a web socket - that accepts strings and return strings
      WebSocket.accept receives a function(RequestHeader => Flow)
@@ -24,7 +37,7 @@ class TableCustomerController @Inject()(cc: ControllerComponents)(implicit syste
         // Create a flow that is handled by an actor
         // Accepts a function[ActorRef => Props] that creates the props for actor to handle the flow.
         ActorFlow.actorRef { out =>
-            TableCustomerServiceActor.props(out)
+            TableCustomerServiceActor.props(out, "Client", "B", "T")
         }
     }
 
