@@ -1,0 +1,97 @@
+{
+    "tables": [
+      {
+        "id": "some-uuid",
+        "title": "some table",
+        "items": [
+          {
+            "id": "134",
+            "name": "cola",
+            "category": "BEER",
+            "price": 10,
+            "status": "PENDING"
+          },
+          {
+            "id": "521",
+            "name": "hamburger",
+            "category": "FOOD",
+            "price": 30,
+            "status": "PENDING",
+            "subitems": [
+              {
+                "name": "Egg",
+                "price": 7
+              }
+              ]
+          },
+          {
+            "id": "221",
+            "name": "cola",
+            "category": "BEER",
+            "price": 10,
+            "status": "PENDING"
+          },
+          {
+            "id": "21",
+            "name": "hamburger",
+            "category": "FOOD",
+            "price": 30,
+            "status": "PENDING"
+          },
+          {
+            "id": "7",
+            "name": "cola",
+            "category": "BEER",
+            "price": 10,
+            "status": "IN_CART"
+          },
+          {
+            "id": "987",
+            "name": "hamburger",
+            "category": "FOOD",
+            "price": 30,
+            "status": "PENDING"
+          },
+          {
+            "id": "6745",
+            "name": "cola",
+            "category": "BEER",
+            "price": 10,
+            "status": "PENDING"
+          },
+          {
+            "id": "2",
+            "name": "hamburger",
+            "category": "FOOD",
+            "price": 30,
+            "status": "IN_CART"
+          },
+          {
+            "id": "18",
+            "name": "cola",
+            "category": "BEER",
+            "price": 10,
+            "status": "PENDING"
+          },
+          {
+            "id": "14",
+            "name": "hamburger",
+            "category": "FOOD",
+            "price": 30,
+            "status": "PENDING"
+          },
+          {
+            "id": "1",
+            "name": "cola",
+            "category": "BEER",
+            "price": 10,
+            "status": "IN_CART"
+          }
+        ],
+        "cart": ["1","2","7"]
+      }
+    ],
+    "profile": {
+      "name": "typicode"
+    }
+  }
