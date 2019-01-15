@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rest_in_peace/models/RestTable.dart';
+import 'package:rest_in_peace/models/TableSession.dart';
 import 'package:rest_in_peace/models/Item.dart';
 import 'package:rest_in_peace/services/table_service.dart';
 
@@ -12,10 +12,11 @@ class OrderedItems extends StatefulWidget {
 }
 
 class OrderedItemsState extends State<OrderedItems> {
+  bool _isCheckout = false;
   String tableId;
   OrderedItemsState(this.tableId);
 
-  RestTable _table;
+  TableSession _table;
   List<Item> _items = new List<Item>();
   List<Item> _cart = new List<Item>();
 
@@ -40,58 +41,27 @@ class OrderedItemsState extends State<OrderedItems> {
         body: Center(
             child: Column(
           children: [
-            Expanded(child: _buildItems()),
-            SizedBox(height: 120.0, child: _buildSummery())
+            Expanded(
+                flex: this._isCheckout ? 1 : 3,
+                child: _buildItems(this._items)),
+            Expanded(flex: this._isCheckout ? 6 : 1, child: _buildSummery())
           ],
         )));
   }
 
   int getTotalAmount() {
-    return _cart.fold(0, (total, item) => total += item.price);
+    return _cart.fold(0, (total, item) => total += item.totalPrice);
   }
 
-  void _payNowPressed() {
-    Navigator.of(context).push(
-      new MaterialPageRoute<void>(
-        builder: (BuildContext context) {
-          final Iterable<ListTile> tiles = _cart.map(
-            (Item item) {
-              return new ListTile(
-                title: new Text(item.name,
-                    style: Theme.of(context).textTheme.body1),
-              );
-            },
-          );
-          final List<Widget> divided = ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList();
-
-          return new Scaffold(
-              appBar: new AppBar(
-                backgroundColor: Theme.of(context).primaryColor,
-                title: Text('Your peice',
-                    style: Theme.of(context).textTheme.title),
-              ),
-              body: Center(
-                  child: Column(children: [
-                Expanded(child: ListView(children: divided)),
-                _buildPayment()
-              ])));
-        },
-      ),
-    );
-  }
-
-  Widget _buildItems() {
+  Widget _buildItems(items) {
     return ListView.builder(
         padding: const EdgeInsets.all(16.0),
         itemBuilder: (context, i) {
           if (i.isOdd) return Divider();
           final index = i ~/ 2;
-          return _buildRow(_items[index]);
+          return _buildRow(items[index]);
         },
-        itemCount: (_items.length * 2) - 1);
+        itemCount: (items.length * 2) - 1);
   }
 
   Widget _buildRow(Item item) {
@@ -107,12 +77,12 @@ class OrderedItemsState extends State<OrderedItems> {
         background: Container(color: Colors.red),
         child: hasSubitems
             ? ExpansionTile(
-                title:
-                    Text(item.name + " +", style: Theme.of(context).textTheme.body1),
+                title: Text(item.name + " +",
+                    style: Theme.of(context).textTheme.body1),
                 trailing: Text(item.totalPrice.toString() + ' ₪',
                     style: Theme.of(context).textTheme.body1),
                 leading:
-                    new Icon(item.icon, color: Theme.of(context).accentColor),
+                    new Icon(item.icon, color: Theme.of(context).primaryColor),
                 children: item.subItems.map(_buildSubitem).toList(),
               )
             : ListTile(
@@ -121,8 +91,45 @@ class OrderedItemsState extends State<OrderedItems> {
                 trailing: Text(item.totalPrice.toString() + ' ₪',
                     style: Theme.of(context).textTheme.body1),
                 leading:
-                    new Icon(item.icon, color: Theme.of(context).accentColor),
+                    new Icon(item.icon, color: Theme.of(context).primaryColor),
               ));
+  }
+
+  Widget _buildCart(items) {
+    return ListView.builder(
+        padding: const EdgeInsets.all(16.0),
+        itemBuilder: (context, i) {
+          if (i.isOdd) return Divider();
+          final index = i ~/ 2;
+          return _buildCartRow(items[index]);
+        },
+        itemCount: (items.length * 2) - 1);
+  }
+
+  Widget _buildCartRow(Item item) {
+    bool hasSubitems = item.subItems.isNotEmpty;
+    return Dismissible(
+        key: Key(item.id),
+        onDismissed: (direction) {
+          setState(() {
+            _cart.remove(item);
+            _items.add(item);
+          });
+        },
+        background: Container(color: Colors.red),
+        child: hasSubitems
+            ? ExpansionTile(
+                title: Text(item.name + " +",
+                    style: Theme.of(context).textTheme.body1),
+                trailing: Text(item.totalPrice.toString() + ' ₪',
+                    style: Theme.of(context).textTheme.body1),
+                children: item.subItems.map(_buildSubitem).toList(),
+              )
+            : ListTile(
+                title:
+                    Text(item.name, style: Theme.of(context).textTheme.body1),
+                trailing: Text(item.totalPrice.toString() + ' ₪',
+                    style: Theme.of(context).textTheme.body1)));
   }
 
   Widget _buildSubitem(SubItem item) {
@@ -131,7 +138,6 @@ class OrderedItemsState extends State<OrderedItems> {
         dense: true,
         title: Text(item.name, style: Theme.of(context).textTheme.body2),
         trailing: Text(item.price.toString() + ' ₪'));
-        
   }
 
   Map<IconData, int> _categoryCount() {
@@ -148,63 +154,56 @@ class OrderedItemsState extends State<OrderedItems> {
   }
 
   Widget _buildSummery() {
-    return Container(
-        color: Theme.of(context).accentColor,
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
-        child: Column(children: [
-          Expanded(
-              child: ListView.builder(
-                  padding: const EdgeInsets.all(16.0),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, i) {
-                    return Container(
-                        width: 45.0,
-                        height: 50.0,
-                        child: Stack(children: [
-                          Icon(_categoryCount().keys.elementAt(i)),
-                          Positioned(
-                              left: 18.0,
-                              top: -5.0,
-                              child: Text(
-                                  'x' +
-                                      _categoryCount()
-                                          .values
-                                          .elementAt(i)
-                                          .toString(),
-                                  style: Theme.of(context).textTheme.caption))
-                        ]));
-                  },
-                  itemCount: (_categoryCount().entries.length))),
-          Row(children: [
-            Expanded(
-                child: Center(
-                    child: Text(getTotalAmount().toString() + ' ₪',
-                        style: Theme.of(context).textTheme.title))),
-            Expanded(
-              child: IconButton(
-                  icon: const Icon(Icons.payment),
-                  color: Colors.white,
-                  onPressed: _payNowPressed),
-            )
-          ])
-        ]));
+    return InkWell(
+        onTap: () {
+          setState(() {
+            this._isCheckout = !this._isCheckout;
+          });
+        },
+        child: Container(
+            color: Theme.of(context).primaryColor,
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: Column(children: [
+              Expanded(
+                  child: this._isCheckout
+                      ? _buildCart(this._cart)
+                      : ListView.builder(
+                          padding: const EdgeInsets.all(16.0),
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, i) {
+                            return Container(
+                                width: 45.0,
+                                height: 50.0,
+                                child: Stack(children: [
+                                  Icon(_categoryCount().keys.elementAt(i)),
+                                  Positioned(
+                                      left: 18.0,
+                                      top: -5.0,
+                                      child: Text(
+                                          'x' +
+                                              _categoryCount()
+                                                  .values
+                                                  .elementAt(i)
+                                                  .toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .caption))
+                                ]));
+                          },
+                          itemCount: (_categoryCount().entries.length))),
+              Row(children: [
+                Expanded(
+                    child: Center(
+                        child: Text(getTotalAmount().toString() + ' ₪',
+                            style: Theme.of(context).textTheme.title))),
+                this._isCheckout
+                    ? Expanded(
+                        child: IconButton(
+                            icon: const Icon(Icons.payment),
+                            color: Colors.white,
+                            onPressed: () {}))
+                    : Container()
+              ])
+            ])));
   }
-
-  Widget _buildPayment() {
-    return Container(
-        color: Theme.of(context).accentColor,
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
-        child: Row(children: [
-          Expanded(
-              child: Center(
-                  child: Text(getTotalAmount().toString(),
-                      style: Theme.of(context).textTheme.title))),
-          Expanded(
-            child: IconButton(
-                icon: const Icon(Icons.check), onPressed: _doPayment),
-          )
-        ]));
-  }
-
-  void _doPayment() {}
 }

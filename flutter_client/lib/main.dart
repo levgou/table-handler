@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'Rest In Pieces',
       theme: new ThemeData(
         brightness: Brightness.dark,
-        primaryColor: Colors.red[800],
-        accentColor: Colors.red[600],
+        primaryColor: Colors.red[600],
+        accentColor: Colors.white,
         fontFamily: 'Montserrat',
         textTheme: TextTheme(
             headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),

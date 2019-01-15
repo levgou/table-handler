@@ -1,12 +1,12 @@
 import 'package:rest_in_peace/models/Item.dart';
 
-class RestTable {
+class TableSession {
   String id;
   String title;
   List<Item> items;
   List<String> cart;
 
-  RestTable.fromJson(Map json) {
+  TableSession.fromJson(Map json) {
     id = json['id'];
     title = json['title'];
     Iterable list = json['items'];
