@@ -1,0 +1,36 @@
+FROM openjdk:8-jdk-alpine
+
+ENV APP_DIR /app
+ENV DIR_NAME "*-1.0"
+ENV ZIP_NAME "${DIR_NAME}.zip"
+ENV DIST_ZIP "target/universal/${ZIP_NAME}"
+
+# Install Bash
+RUN apk add --no-cache bash
+
+# Install wget
+RUN apk add --no-cache --virtual=build-dependencies wget ca-certificates
+
+# compy the dist zip
+COPY  ${DIST_ZIP} /tmp
+
+
+# Deploy 'sbt dist zip' to docker image
+RUN \
+    # deploy the zip to the app dir
+    ls /tmp/${ZIP_NAME} && \
+    mkdir -p  ${APP_DIR} && \
+    unzip -d ${APP_DIR} /tmp/${ZIP_NAME} && \
+    rm -f /tmp/${ZIP_NAME} && \
+
+    # organize the app stracture
+    mv ${APP_DIR}/*/*  ${APP_DIR}/ && \
+    rm ${APP_DIR}/bin/*.bat && \
+    mv ${APP_DIR}/bin/*  ${APP_DIR}/bin/start && \
+
+    # cleanup
+    rm -rf ${APP_DIR}/${DIR_NAME}
+
+
+EXPOSE 9000
+CMD ls ${APP_DIR} && ${APP_DIR}/bin/start -Dhttp.port=${PORT} -Dplay.crypto.secret=secret
