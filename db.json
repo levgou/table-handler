@@ -8,7 +8,7 @@
             "id": "134",
             "name": "Coka-cola",
             "category": "DRINK",
-            "subCategory": "SOFT_DRINK",
+            "type": "SOFT_DRINK",
             "price": 10,
             "status": "PENDING"
           },
@@ -16,7 +16,7 @@
             "id": "521",
             "name": "Hamburger",
             "category": "FOOD",
-            "subCategory": "HAMBURGER",
+            "type": "HAMBURGER",
             "price": 40,
             "status": "PENDING",
             "subitems": [
@@ -30,7 +30,7 @@
             "id": "221",
             "name": "Hoegarden",
             "category": "DRINK",
-            "subCategory": "BEER",
+            "type": "BEER",
             "price": 33,
             "status": "PENDING"
           },
@@ -45,7 +45,7 @@
             "id": "7",
             "name": "Pinacolada",
             "category": "DRINK",
-            "subCategory": "COKTAIL",
+            "type": "COKTAIL",
             "price": 39,
             "status": "IN_CART"
           },
@@ -53,7 +53,7 @@
             "id": "987",
             "name": "Hamburger",
             "category": "FOOD",
-            "subCategory": "HAMBURGER",
+            "type": "HAMBURGER",
             "price": 45,
             "status": "PENDING"
           },
@@ -61,7 +61,7 @@
             "id": "6745",
             "name": "Sufle",
             "category": "FOOD",
-            "subCategory": "DESERT",
+            "type": "DESERT",
             "price": 30,
             "status": "PENDING"
           },
@@ -69,7 +69,7 @@
             "id": "2",
             "name": "Susage",
             "category": "FOOD",
-            "subCategory": "MEAT",
+            "type": "MEAT",
             "price": 30,
             "status": "IN_CART"
           },
@@ -77,14 +77,14 @@
             "id": "18",
             "name": "Fanta",
             "category": "DRINK",
-            "subCategory": "SOFT_DRINK",
+            "type": "SOFT_DRINK",
             "price": 10,
             "status": "PENDING"
           },
           {
             "id": "14",
             "name": "Hamburger",
-            "subCategory": "HAMBURGER",
+            "type": "HAMBURGER",
             "category": "FOOD",
             "price": 45,
             "status": "IN_CART"
@@ -93,7 +93,7 @@
             "id": "1",
             "name": "Coka-cola",
             "category": "DRINK",
-            "subCategory": "SOFT_DRINK",
+            "type": "SOFT_DRINK",
             "price": 10,
             "status": "IN_CART"
           }
