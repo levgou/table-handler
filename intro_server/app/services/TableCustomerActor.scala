@@ -2,9 +2,11 @@ package services
 
 import akka.actor.{Actor, ActorRef, PoisonPill, Props}
 
+
 case class SocketInfo(clientId: String, businessId: String, tableId: String)
 
-class TableCustomerServiceActor(out: ActorRef, socketInfo: SocketInfo) extends Actor {
+
+class TableCustomerActor(out: ActorRef, socketInfo: SocketInfo) extends Actor {
 
     // return partial func to handle the messages ?
     override def receive: Receive = {
@@ -23,10 +25,10 @@ class TableCustomerServiceActor(out: ActorRef, socketInfo: SocketInfo) extends A
 }
 
 
-object TableCustomerServiceActor {
+object TableCustomerActor {
     // Props is a ActorRef configuration object, that is immutable, so it is thread safe and fully sharable.
     def props(out: ActorRef, clientId: String, businessId: String, tableId: String): Props = {
-        Props(new TableCustomerServiceActor(
+        Props(new TableCustomerActor(
             out,
             SocketInfo(clientId, businessId, tableId)
         ))

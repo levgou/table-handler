@@ -2,19 +2,17 @@ package models
 
 import play.api.libs.json._
 
-import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
 
 class UsersAndItemsTable(var uid: String, var name: String) {
 
     private val tableItemsList: ArrayBuffer[TableItem] = ArrayBuffer()
-    private var userList: ArrayBuffer[TableUser] = ArrayBuffer()
+    private val userList: ArrayBuffer[TableUser] = ArrayBuffer()
 
     def addItemToTable(tableItem: TableItem): Int = {
         tableItemsList += tableItem
         1
     }
-
 
     def addUserToTable(tableUser: TableUser): Boolean = {
         if (userList.exists { user => user.name == tableUser.name })
@@ -54,7 +52,7 @@ object UsersAndItemsTable {
 }
 
 
-case class TableItem(name: String, price: Double)
+case class TableItem(name: String, price: Double, itemId: Long = -1, itemUID: Long = -1)
 
 object TableItem {
     implicit val tableItemFormat: OFormat[TableItem] = Json.format[TableItem]
