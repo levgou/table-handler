@@ -33,19 +33,19 @@ class MyApp extends StatelessWidget {
               shadows: [
                 Shadow(
                     // bottomLeft
-                    offset: Offset(-1.5, -1.5),
+                    offset: Offset(-1, -1),
                     color: Colors.red[600]),
                 Shadow(
                     // bottomRight
-                    offset: Offset(1.5, -1.5),
+                    offset: Offset(1, -1),
                     color: Colors.red[600]),
                 Shadow(
                     // topRight
-                    offset: Offset(1.5, 1.5),
+                    offset: Offset(1, 1),
                     color: Colors.red[600]),
                 Shadow(
                     // topLeft
-                    offset: Offset(-1.5, 1.5),
+                    offset: Offset(-1, 1),
                     color: Colors.red[600]),
               ],
             )),

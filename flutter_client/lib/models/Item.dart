@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:rest_in_peace/utils/custom_icons.dart';
 
 class Item {
   String name;
   String category;
-  String subCategory;
+  String type;
   int price;
   List<SubItem> subItems;
   String status;
@@ -16,7 +17,7 @@ class Item {
     status = json['status'];
     name = json['name'];
     category = json['category'];
-    subCategory = json['subCategory'];
+    type = json['type'];
     price = json['price'];
     if(json.containsKey('subitems')){
       Iterable list = json['subitems'];
@@ -40,8 +41,8 @@ class Item {
   }
 
   get icon {
-    if(CATEGORY_ICONS.containsKey(subCategory)){
-      return CATEGORY_ICONS[subCategory];
+    if(CATEGORY_ICONS.containsKey(type)){
+      return CATEGORY_ICONS[type];
     } else if(CATEGORY_ICONS.containsKey(category)){
       return CATEGORY_ICONS[category];
     } else {
@@ -51,8 +52,13 @@ class Item {
 }
 
 const Map<String, IconData> CATEGORY_ICONS = const {
-  'BEER': Icons.local_drink,
-  'FOOD': Icons.fastfood
+  'BEER': CustomIcons.beer,
+  'FOOD': CustomIcons.restaurant,
+  'SOFT_DRINK': CustomIcons.beer_1,
+  'DESERT': CustomIcons.cake,
+  'COKTAIL': CustomIcons.glass,
+  'WINE': CustomIcons.wine,
+  'HAMBURGER': CustomIcons.fast_food
 };
 
 class SubItem {
