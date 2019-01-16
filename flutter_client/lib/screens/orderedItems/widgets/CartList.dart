@@ -12,15 +12,19 @@ class CartList extends StatelessWidget {
   Widget build(BuildContext context) {
     return _buildCart(_items, context);
   }
-Widget _buildCart(items, context) {
-    return ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemBuilder: (context, i) {
-          if (i.isOdd) return Divider();
-          final index = i ~/ 2;
-          return _buildCartRow(items[index], context);
-        },
-        itemCount: (items.length * 2) - 1);
+
+  Widget _buildCart(items, context) {
+    return Container(
+        color: Theme.of(context).primaryColorDark,
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        child: ListView.builder(
+            padding: const EdgeInsets.all(16.0),
+            itemBuilder: (context, i) {
+              if (i.isOdd) return Divider();
+              final index = i ~/ 2;
+              return _buildCartRow(items[index], context);
+            },
+            itemCount: (items.length * 2) - 1));
   }
 
   Widget _buildCartRow(Item item, context) {
@@ -30,14 +34,16 @@ Widget _buildCart(items, context) {
         onDismissed: (direction) {
           _removeFromCartCallback(item);
         },
-        background: Container(color: Colors.red),
+        background: Container(color: Theme.of(context).primaryColor),
         child: ExpansionTile(
-                title: Text(item.name + (hasSubitems ? ' +' : ''),
-                    style: Theme.of(context).textTheme.body1),
-                trailing: Text(formatPrice(item.totalPrice),
-                    style: Theme.of(context).textTheme.body1),
-                children: item.subItems.map((item) => _buildSubitem(item, context)).toList(),
-              ));
+          title: Text(item.name + (hasSubitems ? ' +' : ''),
+              style: Theme.of(context).textTheme.body1),
+          trailing: Text(formatPrice(item.totalPrice),
+              style: Theme.of(context).textTheme.body1),
+          children: item.subItems
+              .map((item) => _buildSubitem(item, context))
+              .toList(),
+        ));
   }
 
   Widget _buildSubitem(SubItem item, context) {
@@ -48,5 +54,3 @@ Widget _buildCart(items, context) {
         trailing: Text(formatPrice(item.price)));
   }
 }
-
-  

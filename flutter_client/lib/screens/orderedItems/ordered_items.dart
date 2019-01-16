@@ -3,9 +3,10 @@ import 'package:rest_in_peace/models/TableSession.dart';
 import 'package:rest_in_peace/models/Item.dart';
 import 'package:rest_in_peace/screens/orderedItems/widgets/CartCounter.dart';
 import 'package:rest_in_peace/screens/orderedItems/widgets/CartList.dart';
+import 'package:rest_in_peace/screens/orderedItems/widgets/ExpandedSection.dart';
 import 'package:rest_in_peace/screens/orderedItems/widgets/ItemList.dart';
+import 'package:rest_in_peace/screens/orderedItems/widgets/SummeryBar.dart';
 import 'package:rest_in_peace/services/table_service.dart';
-import 'package:rest_in_peace/utils/format.dart';
 
 class OrderedItems extends StatefulWidget {
   final String tableId;
@@ -53,49 +54,35 @@ class OrderedItemsState extends State<OrderedItems> {
     });
   }
 
+  _toggleCart() {
+    setState(() {
+      _isCheckout = !_isCheckout;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title:
-              Text('Ordered items', style: Theme.of(context).textTheme.title),
-        ),
-        body: Center(
-            child: Column(children: [
-          Expanded(
-              flex: this._isCheckout ? 1 : 3, child: ItemList(this._items, _addToCart)),
-          Expanded(flex: this._isCheckout ? 6 : 1, child: _buildSummery())
-        ])));
-  }
-
-  Widget _buildSummery() {
-    return InkWell(
-        onTap: () {
-          setState(() {
-            this._isCheckout = !this._isCheckout;
-          });
-        },
-        child: Container(
-            color: Theme.of(context).primaryColor,
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: Column(children: [
-              Expanded(
-                  child: this._isCheckout
-                      ? CartList(_cart, _removeFromCart)
-                      : CartCounter(_cart)),
-              Row(children: [
-                Expanded(
-                    child: Center(
-                        child: Text(formatPrice(_table.userTotalCartPrice),
-                            style: Theme.of(context).textTheme.title))),
-                this._isCheckout
-                    ? Expanded(
-                        child: IconButton(
-                            icon: const Icon(Icons.payment),
-                            color: Colors.white,
-                            onPressed: () {}))
-                    : Container()
-              ])
-            ])));
+        body: Stack(children: [
+      Column(children: [
+        AppBar(title: Text('Your check'), backgroundColor: Theme.of(context).backgroundColor),
+        Expanded(child: ItemList(this._items, _addToCart)),
+        SizedBox(height: 100.0, child: Container())
+      ]),
+      Positioned(
+          bottom: 0.0,
+          left: 0,
+          right: 0,
+          child: Column(children: [
+            CartCounter(_cart, _isCheckout, _toggleCart),
+            ExpandedSection(
+                height: MediaQuery.of(context).size.height -
+                    130.0, //todo: find something less hardcoded
+                collapsedHeight: 0.0,
+                expand: _isCheckout,
+                child: CartList(_cart, _removeFromCart)),
+            SummeryBar(_table, _isCheckout, () {})
+          ]))
+    ]));
   }
 }
