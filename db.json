@@ -6,16 +6,18 @@
         "items": [
           {
             "id": "134",
-            "name": "cola",
-            "category": "BEER",
+            "name": "Coka-cola",
+            "category": "DRINK",
+            "subCategory": "SOFT_DRINK",
             "price": 10,
             "status": "PENDING"
           },
           {
             "id": "521",
-            "name": "hamburger",
+            "name": "Hamburger",
             "category": "FOOD",
-            "price": 30,
+            "subCategory": "HAMBURGER",
+            "price": 40,
             "status": "PENDING",
             "subitems": [
               {
@@ -26,64 +28,72 @@
           },
           {
             "id": "221",
-            "name": "cola",
-            "category": "BEER",
-            "price": 10,
+            "name": "Hoegarden",
+            "category": "DRINK",
+            "subCategory": "BEER",
+            "price": 33,
             "status": "PENDING"
           },
           {
             "id": "21",
-            "name": "hamburger",
+            "name": "Snitzel",
             "category": "FOOD",
-            "price": 30,
+            "price": 45,
             "status": "PENDING"
           },
           {
             "id": "7",
-            "name": "cola",
-            "category": "BEER",
-            "price": 10,
+            "name": "Pinacolada",
+            "category": "DRINK",
+            "subCategory": "COKTAIL",
+            "price": 39,
             "status": "IN_CART"
           },
           {
             "id": "987",
-            "name": "hamburger",
+            "name": "Hamburger",
             "category": "FOOD",
-            "price": 30,
+            "subCategory": "HAMBURGER",
+            "price": 45,
             "status": "PENDING"
           },
           {
             "id": "6745",
-            "name": "cola",
-            "category": "BEER",
-            "price": 10,
+            "name": "Sufle",
+            "category": "FOOD",
+            "subCategory": "DESERT",
+            "price": 30,
             "status": "PENDING"
           },
           {
             "id": "2",
-            "name": "hamburger",
+            "name": "Susage",
             "category": "FOOD",
+            "subCategory": "MEAT",
             "price": 30,
             "status": "IN_CART"
           },
           {
             "id": "18",
-            "name": "cola",
-            "category": "BEER",
+            "name": "Fanta",
+            "category": "DRINK",
+            "subCategory": "SOFT_DRINK",
             "price": 10,
             "status": "PENDING"
           },
           {
             "id": "14",
-            "name": "hamburger",
+            "name": "Hamburger",
+            "subCategory": "HAMBURGER",
             "category": "FOOD",
-            "price": 30,
-            "status": "PENDING"
+            "price": 45,
+            "status": "IN_CART"
           },
           {
             "id": "1",
-            "name": "cola",
-            "category": "BEER",
+            "name": "Coka-cola",
+            "category": "DRINK",
+            "subCategory": "SOFT_DRINK",
             "price": 10,
             "status": "IN_CART"
           }
