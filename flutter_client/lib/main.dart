@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rest_in_peace/screens/homepage.dart';
-import 'package:rest_in_peace/screens/ordered_items.dart';
+import 'package:rest_in_peace/screens/orderedItems/ordered_items.dart';
 import 'package:rest_in_peace/utils/theme.dart';
 
 void main() => runApp(MyApp());
@@ -15,8 +15,10 @@ class MyApp extends StatelessWidget {
       title: 'Rest In Pieces',
       theme: new ThemeData(
         brightness: Brightness.dark,
-        primaryColor: Colors.red[800],
-        accentColor: Colors.red[600],
+        primaryColor: Colors.red[600],
+        backgroundColor: Colors.grey[800],
+        primaryColorDark: Colors.red[800],
+        accentColor: Colors.white,
         fontFamily: 'Montserrat',
         textTheme: TextTheme(
             headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),

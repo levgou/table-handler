@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_mobile_vision/qr_camera.dart';
-import 'package:rest_in_peace/screens/ordered_items.dart';
+import 'package:rest_in_peace/screens/orderedItems/ordered_items.dart';
 
 class HomePage extends StatefulWidget {
   @override

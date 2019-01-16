@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 
 class Item {
   String name;
-  IconData icon;
+  String category;
+  String subCategory;
   int price;
   List<SubItem> subItems;
   String status;
   String id;
 
-  Item(this.name, this.icon, this.price, this.subItems);
+  Item(this.name, this.category, this.price, this.subItems);
 
   Item.fromJson(Map json) {
     id = json['id'];
     status = json['status'];
     name = json['name'];
-    icon = CATEGORY_ICONS[json['category']];
+    category = json['category'];
+    subCategory = json['subCategory'];
     price = json['price'];
     if(json.containsKey('subitems')){
       Iterable list = json['subitems'];
@@ -26,7 +28,7 @@ class Item {
   }
         
   Map toJson() {
-    return {'name': name, 'icon': icon, 'price': price};
+    return {'name': name, 'category': category, 'price': price};
   }
 
   get totalPrice {
@@ -34,6 +36,16 @@ class Item {
       return subItems.fold(0, (current, item) => current + item.price);
     } else {
       return this.price;
+    }
+  }
+
+  get icon {
+    if(CATEGORY_ICONS.containsKey(subCategory)){
+      return CATEGORY_ICONS[subCategory];
+    } else if(CATEGORY_ICONS.containsKey(category)){
+      return CATEGORY_ICONS[category];
+    } else {
+      return Icons.question_answer;
     }
   }
 }
