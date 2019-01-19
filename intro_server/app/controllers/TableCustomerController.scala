@@ -6,7 +6,7 @@ import com.google.inject.Singleton
 import javax.inject.Inject
 import play.api.libs.streams.ActorFlow
 import play.api.mvc.{AbstractController, ControllerComponents, WebSocket}
-import services.TableCustomerServiceActor
+import services.TableCustomerActor
 
 /**
   * Chat Controller instance that handles the incoming chat requests with the server and provides a Echo chat service.
@@ -23,7 +23,7 @@ class TableCustomerController @Inject()(cc: ControllerComponents)(implicit syste
             // Create a flow that is handled by an actor
             // Accepts a function[ActorRef => Props] that creates the props for actor to handle the flow.
             ActorFlow.actorRef { out =>
-                TableCustomerServiceActor.props(out, clientId, businessId, tableId)
+                TableCustomerActor.props(out, clientId, businessId, tableId)
             }
         }
 
@@ -37,7 +37,7 @@ class TableCustomerController @Inject()(cc: ControllerComponents)(implicit syste
         // Create a flow that is handled by an actor
         // Accepts a function[ActorRef => Props] that creates the props for actor to handle the flow.
         ActorFlow.actorRef { out =>
-            TableCustomerServiceActor.props(out, "Client", "B", "T")
+            TableCustomerActor.props(out, "Client", "B", "T")
         }
     }
 

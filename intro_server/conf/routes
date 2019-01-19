@@ -21,7 +21,10 @@ GET         /db/:msg                                                      contro
 # my
 GET         /tables/customer/ws/:client_id/:buissness_id/:table_id        controllers.TableCustomerController.requestSocket(client_id: String, buissness_id: String, table_id: String)
 
-
+# my
+POST        /tables/business/open_business                                controllers.BusinessController.openBusiness
+POST        /tables/business/open_table                                   controllers.BusinessController.openTable
+POST        /tables/business/add_item_to_table                            controllers.BusinessController.addItemToTable
 
 
 
