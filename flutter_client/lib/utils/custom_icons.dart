@@ -20,20 +20,19 @@
 ///         Author:    Google
 ///         License:   Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
 ///         Homepage:  https://design.google.com/icons/
-/// * Font Awesome, Copyright (C) 2016 by Dave Gandy
-///         Author:    Dave Gandy
-///         License:   SIL ()
-///         Homepage:  http://fortawesome.github.com/Font-Awesome/
-/// * Maki, Copyright (C) Mapbox, LCC
-///         Author:    Mapbox
-///         License:   BSD (https://github.com/mapbox/maki/blob/gh-pages/LICENSE.txt)
-///         Homepage:  http://mapbox.com/maki/
 /// * Elusive, Copyright (C) 2013 by Aristeides Stathopoulos
 ///         Author:    Aristeides Stathopoulos
 ///         License:   SIL (http://scripts.sil.org/OFL)
 ///         Homepage:  http://aristeides.com/
+/// * Maki, Copyright (C) Mapbox, LCC
+///         Author:    Mapbox
+///         License:   BSD (https://github.com/mapbox/maki/blob/gh-pages/LICENSE.txt)
+///         Homepage:  http://mapbox.com/maki/
+/// * Font Awesome, Copyright (C) 2016 by Dave Gandy
+///         Author:    Dave Gandy
+///         License:   SIL ()
+///         Homepage:  http://fortawesome.github.com/Font-Awesome/
 ///
-
 import 'package:flutter/widgets.dart';
 
 class CustomIcons {
@@ -43,14 +42,12 @@ class CustomIcons {
 
   static const IconData beer = const IconData(0xe800, fontFamily: _kFontFam);
   static const IconData cake = const IconData(0xe801, fontFamily: _kFontFam);
-  static const IconData glass = const IconData(0xe802, fontFamily: _kFontFam);
+  static const IconData local_bar = const IconData(0xe802, fontFamily: _kFontFam);
   static const IconData wine = const IconData(0xe803, fontFamily: _kFontFam);
-  static const IconData coffee = const IconData(0xe804, fontFamily: _kFontFam);
-  static const IconData bar = const IconData(0xe805, fontFamily: _kFontFam);
-  static const IconData glass_1 = const IconData(0xe806, fontFamily: _kFontFam);
+  static const IconData keyboard_arrow_down = const IconData(0xe804, fontFamily: _kFontFam);
   static const IconData gift = const IconData(0xe807, fontFamily: _kFontFam);
-  static const IconData beer_1 = const IconData(0xe808, fontFamily: _kFontFam);
-  static const IconData cafe = const IconData(0xe80c, fontFamily: _kFontFam);
+  static const IconData qrcode = const IconData(0xe809, fontFamily: _kFontFam);
   static const IconData fast_food = const IconData(0xe815, fontFamily: _kFontFam);
   static const IconData restaurant = const IconData(0xe832, fontFamily: _kFontFam);
+  static const IconData coffee = const IconData(0xf0f4, fontFamily: _kFontFam);
 }

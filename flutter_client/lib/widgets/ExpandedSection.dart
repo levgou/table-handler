@@ -4,9 +4,10 @@ class ExpandedSection extends StatefulWidget {
 
   final Widget child;
   final bool expand;
-  final double height;
-  final double collapsedHeight;
-  ExpandedSection({this.expand = false, this.child, this.height, this.collapsedHeight});
+  final bool reverse;
+  final Axis axis;
+  final double speedFactor;
+  ExpandedSection({this.expand = false, this.child, this.axis = Axis.vertical, this.reverse = false, this.speedFactor = 1.0});
 
   @override
   ExpandedSectionState createState() => ExpandedSectionState();
@@ -25,7 +26,7 @@ class ExpandedSectionState extends State<ExpandedSection> with SingleTickerProvi
   void prepareAnimations() {
     expandController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: (500 / widget.speedFactor).floor()),
       upperBound: 1.0,
       lowerBound: 0.0
     );
@@ -46,10 +47,10 @@ class ExpandedSectionState extends State<ExpandedSection> with SingleTickerProvi
   void didUpdateWidget(ExpandedSection oldWidget) {
     super.didUpdateWidget(oldWidget);
     if(widget.expand) {
-      expandController.animateTo(1.0);
+      expandController.forward();
     }
     else {
-      expandController.animateTo(widget.collapsedHeight / widget.height);
+      expandController.reverse();
     }
   }
 
@@ -62,11 +63,9 @@ class ExpandedSectionState extends State<ExpandedSection> with SingleTickerProvi
   @override
   Widget build(BuildContext context) {
     return SizeTransition(
-      axisAlignment: 1.0,
+      axis: widget.axis,
+      axisAlignment: widget.reverse ? -1.0 : 1.0,
       sizeFactor: animation,
-      child: SizedBox(
-      height: widget.height, 
-      child: widget.child
-    ));
+      child: widget.child);
   }
 }

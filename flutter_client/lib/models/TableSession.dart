@@ -36,9 +36,8 @@ class TableSession {
     cart.add(item.id);
   }
 
-  int get userTotalCartPrice {
+  double get userTotalCartPrice {
     return userCartItems.fold(0, (total, item) => total += item.totalPrice);
-  
   }
 
   Map toJson() {
