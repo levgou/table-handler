@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rest_in_peace/models/Item.dart';
+import 'package:rest_in_peace/models/item.dart';
 import 'package:rest_in_peace/utils/format.dart';
+import 'package:rest_in_peace/widgets/custom_expansion_tile.dart';
 
 class CartList extends StatelessWidget {
   final List<Item> _items;
@@ -20,7 +21,7 @@ class CartList extends StatelessWidget {
       child: ListView.builder(
           padding: const EdgeInsets.all(16.0),
           itemBuilder: (context, i) {
-            if (i.isOdd) return Divider();
+            if (i.isOdd) return Divider(color: Theme.of(context).accentColor);
             final index = i ~/ 2;
             return _buildCartRow(items[index], context);
           },
@@ -36,7 +37,7 @@ class CartList extends StatelessWidget {
         _removeFromCartCallback(item);
       },
       background: Container(color: Theme.of(context).primaryColor),
-      child: ExpansionTile(
+      child: CustomExpansionTile(
         title: Text(item.name + (hasSubitems ? ' +' : ''),
             style: Theme.of(context).textTheme.body2),
         trailing: Text(formatPrice(item.totalPrice),

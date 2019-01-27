@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rest_in_peace/models/Item.dart';
+import 'package:rest_in_peace/models/item.dart';
 
 class CartCounter extends StatelessWidget {
   final List<Item> _items;

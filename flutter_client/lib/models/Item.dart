@@ -18,7 +18,7 @@ class Item {
     name = json['name'];
     category = json['category'];
     type = json['type'];
-    price = json['price'];
+    price = json['price'].toDouble();
     if (json.containsKey('subitems')) {
       Iterable list = json['subitems'];
       subItems = list.map((subitem) => SubItem.fromJson(subitem)).toList();
@@ -69,7 +69,7 @@ class SubItem {
 
   SubItem.fromJson(Map json)
       : name = json['name'],
-        price = json['price'];
+        price = json['price'].toDouble();
 
   Map toJson() {
     return {'name': name, 'price': price};

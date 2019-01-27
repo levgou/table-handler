@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rest_in_peace/models/Item.dart';
+import 'package:rest_in_peace/models/item.dart';
 import 'package:rest_in_peace/utils/format.dart';
+import 'package:rest_in_peace/widgets/custom_expansion_tile.dart';
 
 class ItemList extends StatelessWidget {
   final List<Item> _items;
@@ -31,7 +32,7 @@ class ItemList extends StatelessWidget {
       onDismissed: (direction) {
         _addToCartCallback(item);
       },
-      child: ExpansionTile(
+      child: CustomExpansionTile(
         title: Text(item.name + (hasSubitems ? " +" : ""),
             style: Theme.of(context).textTheme.body1),
         trailing: Text(formatPrice(item.totalPrice),

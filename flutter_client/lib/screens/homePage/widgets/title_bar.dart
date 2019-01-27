@@ -10,6 +10,7 @@ class TitleBar extends StatelessWidget {
 
   Widget _buildTitleBar(context) {
     return Container(
+      height: 220.0,
       child: Column(
         children: [
           Container(

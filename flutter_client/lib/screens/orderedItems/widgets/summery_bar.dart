@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:rest_in_peace/models/TableSession.dart';
-import 'package:rest_in_peace/widgets/ExpandedSection.dart';
+import 'package:rest_in_peace/models/table_status.dart';
+import 'package:rest_in_peace/widgets/expanded_section.dart';
 import 'package:rest_in_peace/utils/format.dart';
 
 class SummeryBar extends StatelessWidget {
-  final TableSession _table;
+  final TableStatus _table;
   final Function() _checkoutClicked;
   final bool _isCartOpen;
 
@@ -15,7 +15,7 @@ class SummeryBar extends StatelessWidget {
     return _buildSummery(_table, context);
   }
 
-  Widget _buildSummery(TableSession table, context) {
+  Widget _buildSummery(TableStatus table, context) {
     return SizedBox(
       height: 50.0,
       child: Container(

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rest_in_peace/screens/homePage/scannerScreen/scannerScreen.dart';
-import 'package:rest_in_peace/screens/homePage/widgets/QRScanner.dart';
-import 'package:rest_in_peace/screens/homePage/widgets/ScanButton.dart';
-import 'package:rest_in_peace/screens/homePage/widgets/TitleBar.dart';
-import 'package:rest_in_peace/screens/orderedItems/ordered_items.dart';
-import 'package:rest_in_peace/widgets/ExpandedSection.dart';
+import 'package:rest_in_peace/screens/scanner/scanner.dart';
+import 'package:rest_in_peace/screens/homePage/widgets/scan_button.dart';
+import 'package:rest_in_peace/screens/homePage/widgets/title_bar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,8 +9,6 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  String scannedCode = "";
-
   initState() {
     super.initState();
   }
@@ -23,12 +18,20 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: SafeArea(
-        child: Column(children: [
-          Expanded(child: TitleBar()),
-          Expanded(
-            child: ScanButton(_scanButtonHandler),
-          ),
-        ]),
+        child: Column(
+          children: [
+            TitleBar(),
+            Expanded(
+              child: Container(
+                color: Theme.of(context).backgroundColor,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ScanButton(_scanButtonHandler),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -36,7 +39,7 @@ class HomePageState extends State<HomePage> {
   _scanButtonHandler() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ScannerScreen()),
+      MaterialPageRoute(builder: (context) => Scanner()),
     );
   }
 }

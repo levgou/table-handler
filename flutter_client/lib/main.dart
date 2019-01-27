@@ -28,13 +28,28 @@ class MyApp extends StatelessWidget {
                 fontStyle: FontStyle.italic,
                 color: Colors.grey[50]),
             subtitle: TextStyle(
-                fontSize: 18.0, fontStyle: FontStyle.italic, height: 4.0),
-            body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+                fontSize: 18.0,
+                fontStyle: FontStyle.italic,
+                height: 4.0,
+                color: Colors.grey[50]),
+            body1: TextStyle(
+              fontSize: 14.0,
+              fontFamily: 'Hind',
+            ),
             body2: TextStyle(
-                fontSize: 14.0, fontFamily: 'Hind', color: Colors.grey[50]),
-            display1: TextStyle(fontSize: 11.0, fontFamily: 'Hind'),
+              fontSize: 14.0,
+              fontFamily: 'Hind',
+              color: Colors.grey[50],
+            ),
+            display1: TextStyle(
+              fontSize: 11.0,
+              fontFamily: 'Hind',
+            ),
             display2: TextStyle(
-                fontSize: 11.0, fontFamily: 'Hind', color: Colors.grey[50]),
+              fontSize: 11.0,
+              fontFamily: 'Hind',
+              color: Colors.grey[50],
+            ),
             caption: TextStyle(
               fontSize: 20.0,
               color: Colors.white,
