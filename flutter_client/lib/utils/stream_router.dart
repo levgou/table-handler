@@ -9,14 +9,14 @@ class StreamRouter {
 
   Stream<TableStatus> tableStatusUpdateStream;
   StreamController<TableStatus> _tableStatusStreamController;
-  Stream<RequestStatus> cartStatusStream;
-  StreamController<RequestStatus> _cartStatusStreamController;
+  Stream<RequestStatus> statusStream;
+  StreamController<RequestStatus> _statusStreamController;
 
   StreamRouter(Stream<SocketMessage> inputStream) {
     _tableStatusStreamController = new StreamController();
-    _cartStatusStreamController = new StreamController();
+    _statusStreamController = new StreamController();
     tableStatusUpdateStream = _tableStatusStreamController.stream;
-    cartStatusStream = _cartStatusStreamController.stream;
+    statusStream = _statusStreamController.stream;
 
     inputStream.listen((SocketMessage message) {
       // try asBroadCastStream and using Where
@@ -25,8 +25,8 @@ class StreamRouter {
           _tableStatusStreamController.sink
               .add(new TableStatus.fromJson(message.content));
           break;
-        case MessageType.cartRequestStatusUpdate:
-          _cartStatusStreamController.sink
+        case MessageType.waitingStatusUpdate:
+          _statusStreamController.sink
               .add(new RequestStatus.fromJson(message.content));
           break;
         default:

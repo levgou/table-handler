@@ -29,7 +29,15 @@ class Item {
   }
 
   Map toJson() {
-    return {'name': name, 'category': category, 'price': price};
+    return {
+      'id': id,
+      'name': name,
+      'category': category,
+      'type': type,
+      'price': price,
+      'status': status,
+      'subitems': subItems
+    };
   }
 
   double get totalPrice {

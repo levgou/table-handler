@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rest_in_peace/models/request_status.dart';
 import 'package:rest_in_peace/services/table_service.dart';
 import 'package:rest_in_peace/models/table_status.dart';
 import 'package:rest_in_peace/models/item.dart';
@@ -28,9 +29,6 @@ class OrderedItemsState extends State<OrderedItems> {
     super.initState();
     service = new TableService();
     _requestTableUpdate();
-    service.streamRouter.cartStatusStream.listen((message) {
-      debugPrint(message.status.toString());
-    });
   }
 
   _requestTableUpdate() {
@@ -43,17 +41,23 @@ class OrderedItemsState extends State<OrderedItems> {
     _table = table;
   }
 
-  _addToCart(Item item) {
-    setState(() {
-      _table.addToCart(item);
-    });
-    service.requestAddToCart(item);
+  Future<RequestStatus> _addToCart(Item item) async {
+    RequestStatus requestStatus = await service.requestAddToCart(item);
+    if (requestStatus.status == StatusType.success) {
+      setState(() {
+        _table.addToCart(item);
+      });
+    }
+    return requestStatus;
   }
 
-  _removeFromCart(Item item) {
-    setState(() {
-      _table.removeFromCart(item);
-    });
+  _removeFromCart(Item item) async {
+    RequestStatus requestStatus = await service.requestRemoveFromCart(item);
+    if (requestStatus.status == StatusType.success) {
+      setState(() {
+        _table.removeFromCart(item);
+      });
+    }
   }
 
   _toggleCart() {

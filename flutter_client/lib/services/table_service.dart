@@ -1,36 +1,34 @@
 import 'package:rest_in_peace/models/item.dart';
+import 'package:rest_in_peace/models/request_status.dart';
+import 'package:rest_in_peace/models/socket_message.dart';
 import 'package:rest_in_peace/utils/table_session.dart';
 import 'package:rest_in_peace/utils/stream_router.dart';
 
 class TableService {
   StreamRouter streamRouter;
-  TableSession tableSession;
+  TableSession _tableSession;
 
   TableService() {
-    tableSession = new TableSession("some-uid");
-    streamRouter = new StreamRouter(tableSession.sessionStream);
+    _tableSession = new TableSession("some-uid");
+    streamRouter = _tableSession.streamRouter;
   }
 
   requestTableUpdate() {
-    tableSession.sendMessage(messageJson);
+    // String response = SocketMessageBuilder.tableStatusUpdate();
+    // new SocketMessage(MessageType.requestStatusUpdate)
+    _tableSession.sendMessage(messageJson);
   }
 
-  requestAddToCart(Item item) {
-    tableSession.sendMessage(success);
+  Future<RequestStatus> requestAddToCart(Item item) async {
+    return await _tableSession.sendMessageAndWaitStatus(
+        new SocketMessage(MessageType.requestAddToCart, {"itemId": item.id}));
   }
 
-  requestRemoveFromCart(Item item) {
-    tableSession.sendMessage(success);
+  Future<RequestStatus> requestRemoveFromCart(Item item) async {
+    return await _tableSession.sendMessageAndWaitStatus(new SocketMessage(
+        MessageType.requestRemoveFromCart, {"itemId": item.id}));
   }
 }
-
-const success = """{
-    "messageType": "CartRequestStatusUpdate",
-    "content": {
-      "status": "SUCCESS",
-      "requestId": "1234"
-    }
-}""";
 
 const messageJson = """{
     "messageType": "TableStatusUpdate",
