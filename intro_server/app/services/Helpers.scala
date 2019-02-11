@@ -44,7 +44,7 @@ object Helpers {
       if (initial.length > 0) print(initial)
       results().foreach(res => println(converter(res)))
     }
-    def printHeadResult(initial: String = ""): Unit = println(s"${initial}${converter(headResult())}")
+    def printHeadResult(initial: String = ""): Unit = println(s"$initial${converter(headResult())}")
   }
 
 }

@@ -6,20 +6,11 @@
 # An example controller showing a sample home page
 GET         /                                                             controllers.HomeController.index
 
-
-# my
-GET         /table/:id                                                    controllers.TableController.get(id: Long)
-
-
-# my
-POST        /table                                                        controllers.TableController.save
-
-
 # my
 GET         /db/:msg                                                      controllers.DBController.get(msg: String)
 
 # my
-GET         /tables/customer/ws/:client_id/:buissness_id/:table_id        controllers.TableCustomerController.requestSocket(client_id: String, buissness_id: String, table_id: String)
+GET         /tables/customer/ws/:client_id                                controllers.CustomerController.requestSocket(client_id: String)
 
 # my
 POST        /tables/business/open_business                                controllers.BusinessController.openBusiness
@@ -27,9 +18,6 @@ POST        /tables/business/open_table                                   contro
 POST        /tables/business/add_item_to_table                            controllers.BusinessController.addItemToTable
 
 
-
-# An example controller showing how to use dependency injection
-GET         /count                                                        controllers.CountController.count
 # An example controller showing how to write asynchronous code
 GET         /message                                                      controllers.AsyncController.message
 
