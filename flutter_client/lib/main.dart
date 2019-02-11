@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rest_in_peace/screens/homepage.dart';
-import 'package:rest_in_peace/screens/orderedItems/ordered_items.dart';
-import 'package:rest_in_peace/utils/theme.dart';
+import 'package:rest_in_peace/screens/homePage/homepage.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,46 +10,71 @@ class MyApp extends StatelessWidget {
       debugPrint("debug mode is on");
     }
     return MaterialApp(
-      title: 'Rest In Pieces',
+      title: 'YourPiece',
       theme: new ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Colors.red[600],
-        backgroundColor: Colors.grey[800],
-        primaryColorDark: Colors.red[800],
-        accentColor: Colors.white,
+        brightness: Brightness.light,
+        primaryColorLight: Colors.teal[300],
+        highlightColor: Colors.teal[300],
+        primaryColorDark: Colors.teal[700],
+        accentColor: Colors.grey[50],
+        backgroundColor: Colors.grey[50],
+        primaryColor: Colors.teal[500],
+        scaffoldBackgroundColor: Colors.grey[50],
         fontFamily: 'Montserrat',
         textTheme: TextTheme(
             headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-            title: TextStyle(fontSize: 24.0, fontStyle: FontStyle.italic),
+            title: TextStyle(
+                fontSize: 28.0,
+                fontStyle: FontStyle.italic,
+                color: Colors.grey[50]),
             subtitle: TextStyle(
-                fontSize: 18.0, fontStyle: FontStyle.italic, height: 4.0),
-            body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
-            body2: TextStyle(fontSize: 11.0, fontFamily: 'Hind'),
+                fontSize: 18.0,
+                fontStyle: FontStyle.italic,
+                height: 4.0,
+                color: Colors.grey[50]),
+            body1: TextStyle(
+              fontSize: 14.0,
+              fontFamily: 'Hind',
+            ),
+            body2: TextStyle(
+              fontSize: 14.0,
+              fontFamily: 'Hind',
+              color: Colors.grey[50],
+            ),
+            display1: TextStyle(
+              fontSize: 11.0,
+              fontFamily: 'Hind',
+            ),
+            display2: TextStyle(
+              fontSize: 11.0,
+              fontFamily: 'Hind',
+              color: Colors.grey[50],
+            ),
             caption: TextStyle(
               fontSize: 20.0,
               color: Colors.white,
               shadows: [
                 Shadow(
                     // bottomLeft
-                    offset: Offset(-1.5, -1.5),
-                    color: Colors.red[600]),
+                    offset: Offset(-1, -1),
+                    color: Colors.teal[300]),
                 Shadow(
                     // bottomRight
-                    offset: Offset(1.5, -1.5),
-                    color: Colors.red[600]),
+                    offset: Offset(1, -1),
+                    color: Colors.teal[300]),
                 Shadow(
                     // topRight
-                    offset: Offset(1.5, 1.5),
-                    color: Colors.red[600]),
+                    offset: Offset(1, 1),
+                    color: Colors.teal[300]),
                 Shadow(
                     // topLeft
-                    offset: Offset(-1.5, 1.5),
-                    color: Colors.red[600]),
+                    offset: Offset(-1, 1),
+                    color: Colors.teal[300]),
               ],
             )),
       ),
       home: Scaffold(
-        body: Center(child: OrderedItems("some-uuid")),
+        body: Center(child: HomePage()),
       ),
     );
   }

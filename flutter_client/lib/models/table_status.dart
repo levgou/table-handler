@@ -1,12 +1,12 @@
-import 'package:rest_in_peace/models/Item.dart';
+import 'package:rest_in_peace/models/item.dart';
 
-class TableSession {
+class TableStatus {
   String id;
   String title;
   List<Item> items;
   List<String> cart;
 
-  TableSession.fromJson(Map json) {
+  TableStatus.fromJson(Map json) {
     id = json['id'];
     title = json['title'];
     Iterable list = json['items'];
@@ -36,9 +36,8 @@ class TableSession {
     cart.add(item.id);
   }
 
-  int get userTotalCartPrice {
+  double get userTotalCartPrice {
     return userCartItems.fold(0, (total, item) => total += item.totalPrice);
-  
   }
 
   Map toJson() {
