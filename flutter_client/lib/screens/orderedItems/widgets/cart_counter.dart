@@ -15,41 +15,49 @@ class CartCounter extends StatelessWidget {
 
   Widget _buildCounter(items, context) {
     return Container(
-      color: Theme.of(context).primaryColorLight,
+      color: Theme.of(context).primaryColorDark,
       child: SizedBox(
         height: 55.0,
         child: Row(
           children: [
             Expanded(
               flex: 6,
-              child: ListView.builder(
-                padding: const EdgeInsets.all(16.0),
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, i) {
-                  return Container(
-                    width: 45.0,
-                    height: 45.0,
-                    child: Stack(
-                      children: [
-                        Icon(_categoryCount().keys.elementAt(i),
-                            color: Theme.of(context).accentColor),
-                        Positioned(
-                          left: 18.0,
-                          bottom: 4.0,
-                          child: Text(
-                              'x' +
-                                  _categoryCount()
-                                      .values
-                                      .elementAt(i)
-                                      .toString(),
-                              style: Theme.of(context).textTheme.caption),
-                        )
-                      ],
+              child: _items.length > 0
+                  ? ListView.builder(
+                      padding: const EdgeInsets.all(16.0),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, i) {
+                        return Container(
+                          width: 45.0,
+                          height: 45.0,
+                          child: Stack(
+                            children: [
+                              Icon(_categoryCount().keys.elementAt(i),
+                                  color: Theme.of(context).accentColor),
+                              Positioned(
+                                left: 18.0,
+                                bottom: 4.0,
+                                child: Text(
+                                    'x' +
+                                        _categoryCount()
+                                            .values
+                                            .elementAt(i)
+                                            .toString(),
+                                    style: Theme.of(context)
+                                        .accentTextTheme
+                                        .caption),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                      itemCount: (_categoryCount().entries.length),
+                    )
+                  : Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Text("Your cart is empty... start swipping!",
+                          style: Theme.of(context).accentTextTheme.body1),
                     ),
-                  );
-                },
-                itemCount: (_categoryCount().entries.length),
-              ),
             ),
             Expanded(
               flex: 1,

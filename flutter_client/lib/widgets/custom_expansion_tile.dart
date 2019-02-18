@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomExpansionTile extends StatelessWidget {
-  var trailing;
-  var leading;
-  var children;
-  var title;
+  final trailing;
+  final leading;
+  final children;
+  final title;
 
   CustomExpansionTile({this.title, this.trailing, this.leading, this.children});
 

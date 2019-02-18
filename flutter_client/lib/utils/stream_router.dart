@@ -34,4 +34,9 @@ class StreamRouter {
       }
     });
   }
+
+  terminate() {
+    _tableStatusStreamController.close();
+    _statusStreamController.close();
+  }
 }

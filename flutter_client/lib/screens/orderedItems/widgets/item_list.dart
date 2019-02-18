@@ -7,7 +7,9 @@ class ItemList extends StatelessWidget {
   final List<Item> _items;
   final Function(Item) _addToCartCallback;
 
-  ItemList(this._items, this._addToCartCallback);
+  final Function(Item) _requestAddToCart;
+
+  ItemList(this._items, this._requestAddToCart, this._addToCartCallback);
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +30,56 @@ class ItemList extends StatelessWidget {
   Widget _buildItemsTile(Item item, context) {
     bool hasSubitems = item.subItems.isNotEmpty;
     return Dismissible(
+      confirmDismiss: (DismissDirection direction) => _requestAddToCart(item),
       key: Key(item.id),
-      onDismissed: (direction) {
-        _addToCartCallback(item);
-      },
+      onDismissed: (DismissDirection direction) => _addToCartCallback(item),
+      secondaryBackground: Container(
+        color: Theme.of(context).backgroundColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              "Add To Cart",
+              style: Theme.of(context).textTheme.body1,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Icon(
+                Icons.add_shopping_cart,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+          ],
+        ),
+      ),
+      background: Container(
+        color: Theme.of(context).backgroundColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Icon(
+                Icons.add_shopping_cart,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+            Text(
+              "Add To Cart",
+              style: Theme.of(context).textTheme.body1,
+            ),
+          ],
+        ),
+      ),
       child: CustomExpansionTile(
         title: Text(item.name + (hasSubitems ? " +" : ""),
             style: Theme.of(context).textTheme.body1),
         trailing: Text(formatPrice(item.totalPrice),
             style: Theme.of(context).textTheme.body1),
-        leading: new Icon(item.icon, color: Theme.of(context).primaryColor),
+        leading: new Icon(
+          item.icon,
+          color: Theme.of(context).primaryColorDark,
+        ),
         children:
             item.subItems.map((item) => _buildSubitem(item, context)).toList(),
       ),
@@ -48,9 +90,9 @@ class ItemList extends StatelessWidget {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 30.0),
       dense: true,
-      title: Text(item.name, style: Theme.of(context).textTheme.display1),
+      title: Text(item.name, style: Theme.of(context).textTheme.body2),
       trailing: Text(formatPrice(item.price),
-          style: Theme.of(context).textTheme.display1),
+          style: Theme.of(context).textTheme.body2),
     );
   }
 }
