@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "flutter_client"
+		}
+	],
+	"settings": {
+		"editor.formatOnSave": true,
+		"dart.triggerSignatureHelpAutomatically": true
+	}
+}

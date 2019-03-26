@@ -27,7 +27,7 @@ class TableSession {
 
     streamRouter.statusStream.listen((RequestStatus status) {
       if (_waitingRequests.containsKey(status.requestId)) {
-        _waitingRequests[status.requestId](status);
+        _waitingRequests.remove(status.requestId)(status);
         print("found request id: ${status.requestId}");
       }
     });
@@ -54,6 +54,10 @@ class TableSession {
     // _tableChannel.sink.add(message);
     _tableChannel.sink.add(successMessage(requestId)); //temp
     return statusReportCompleter.future;
+  }
+
+  terminate() {
+    streamRouter.terminate();
   }
 }
 

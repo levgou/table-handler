@@ -19,7 +19,7 @@ class SummeryBar extends StatelessWidget {
     return SizedBox(
       height: 50.0,
       child: Container(
-        color: Theme.of(context).highlightColor,
+        color: Theme.of(context).primaryColorDark,
         padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: Row(
           children: [
@@ -28,10 +28,10 @@ class SummeryBar extends StatelessWidget {
               expand: _isCartOpen,
               child: SizedBox(
                 width: MediaQuery.of(context).size.width / 2,
-                child: IconButton(
-                    icon: const Icon(Icons.payment),
-                    color: Colors.white,
-                    onPressed: _checkoutClicked),
+                  child: IconButton(
+                      icon: const Icon(Icons.payment),
+                      color: Theme.of(context).accentColor,
+                      onPressed: _checkoutClicked),
               ),
             ),
             Expanded(
@@ -39,7 +39,7 @@ class SummeryBar extends StatelessWidget {
                 child: Hero(
                   tag: 'totalAmountToPay',
                   child: Text(formatPrice(table.userTotalCartPrice),
-                      style: Theme.of(context).textTheme.title),
+                      style: Theme.of(context).accentTextTheme.subtitle),
                 ),
               ),
             ),

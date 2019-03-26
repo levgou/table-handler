@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:rest_in_peace/models/request_status.dart';
 import 'package:rest_in_peace/services/table_service.dart';
@@ -31,33 +33,39 @@ class OrderedItemsState extends State<OrderedItems> {
     _requestTableUpdate();
   }
 
+  dispose() {
+    super.dispose();
+    service.terminate(); //todo: causing problem
+  }
+
   _requestTableUpdate() {
     service.requestTableUpdate();
   }
-
-  _testStream() {}
 
   _updateTable(TableStatus table) {
     _table = table;
   }
 
-  Future<RequestStatus> _addToCart(Item item) async {
+  Future<bool> _requestAddToCart(Item item) async {
     RequestStatus requestStatus = await service.requestAddToCart(item);
-    if (requestStatus.status == StatusType.success) {
-      setState(() {
-        _table.addToCart(item);
-      });
-    }
-    return requestStatus;
+    return requestStatus.status == StatusType.success;
   }
 
-  _removeFromCart(Item item) async {
+  Future<bool> _requestRemoveFromCart(Item item) async {
     RequestStatus requestStatus = await service.requestRemoveFromCart(item);
-    if (requestStatus.status == StatusType.success) {
-      setState(() {
-        _table.removeFromCart(item);
-      });
-    }
+    return requestStatus.status == StatusType.success;
+  }
+
+  _addToCart(Item item) {
+    setState(() {
+      _table.addToCart(item);
+    });
+  }
+
+  _removeFromCart(Item item) {
+    setState(() {
+      _table.removeFromCart(item);
+    });
   }
 
   _toggleCart() {
@@ -91,20 +99,20 @@ class OrderedItemsState extends State<OrderedItems> {
                 children: [
                   Column(children: [
                     AppBar(
-                        title: Text('Your check'),
-                        backgroundColor: Theme.of(context).primaryColor,
-                        actions: [
-                          IconButton(
-                              icon: Icon(Icons.home),
-                              onPressed: () {
-                                _testStream();
-                              }),
-                          IconButton(
-                            icon: Icon(Icons.refresh),
-                            onPressed: () => _requestTableUpdate(),
-                          )
-                        ]),
-                    Expanded(child: ItemList(_table.unownedItems, _addToCart)),
+                      title: Text('Your check',
+                          style: Theme.of(context).accentTextTheme.subtitle),
+                      backgroundColor: Theme.of(context).primaryColorDark,
+                      actions: [
+                        IconButton(
+                          icon: Icon(Icons.refresh,
+                              color: Theme.of(context).accentColor),
+                          onPressed: () => _requestTableUpdate(),
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                        child: ItemList(_table.unownedItems, _requestAddToCart,
+                            _addToCart)),
                     SizedBox(height: 100.0, child: Container())
                   ]),
                   Positioned(
@@ -114,14 +122,17 @@ class OrderedItemsState extends State<OrderedItems> {
                     child: Column(
                       children: [
                         CartCounter(
-                            _table.userCartItems, _isCheckout, _toggleCart),
+                          _table.userCartItems,
+                          _isCheckout,
+                          _toggleCart,
+                        ),
                         ExpandedSection(
                             expand: _isCheckout,
                             child: SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height - 130.0,
-                                child: CartList(
-                                    _table.userCartItems, _removeFromCart))),
+                                child: CartList(_table.userCartItems,
+                                    _requestRemoveFromCart, _removeFromCart))),
                         SummeryBar(_table, _isCheckout, _checkoutClicked)
                       ],
                     ),

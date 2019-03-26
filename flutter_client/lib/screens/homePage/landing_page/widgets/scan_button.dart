@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rest_in_peace/utils/custom_icons.dart';
 
 class ScanButton extends StatelessWidget {
-  Function() _callback;
+  final Function() _callback;
   ScanButton(this._callback);
 
   @override
@@ -12,27 +12,25 @@ class ScanButton extends StatelessWidget {
 
   Widget _buildScanButton(callback, context) {
     return Container(
-      height: 130.0,
-      padding: EdgeInsets.symmetric(vertical: 15.0),
+      height: 115.0,
       child: Column(
         children: [
           Text(
             'Scan QR',
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-            ),
+            style: Theme.of(context).accentTextTheme.button,
           ),
           Icon(CustomIcons.keyboard_arrow_down,
-              color: Theme.of(context).primaryColor),
+              size: 35.0, color: Theme.of(context).accentColor),
           ClipOval(
             child: SizedBox(
-              height: 50.0,
-              width: 50.0,
+              height: 55.0,
+              width: 55.0,
               child: Container(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
                 child: IconButton(
                   icon: Icon(CustomIcons.qrcode),
-                  color: Theme.of(context).accentColor,
+                  iconSize: 30.0,
+                  color: Theme.of(context).primaryColor,
                   onPressed: () => callback(),
                 ),
               ),

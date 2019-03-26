@@ -7,17 +7,17 @@ class Finalize extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).primaryColorDark,
       body: SafeArea(
         child: Column(
-          children: <Widget>[
+          children: [
             Expanded(
               child: Center(
                 child: Hero(
                   tag: 'totalAmountToPay',
                   child: Text(
                     formatPrice(amount),
-                    style: Theme.of(context).textTheme.title,
+                    style: Theme.of(context).accentTextTheme.title,
                   ),
                 ),
               ),

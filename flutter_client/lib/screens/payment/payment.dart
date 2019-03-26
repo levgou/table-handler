@@ -64,7 +64,7 @@ class PaymentState extends State<Payment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).primaryColorDark,
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.all(20.0),
@@ -73,17 +73,20 @@ class PaymentState extends State<Payment> {
               Container(
                 padding: EdgeInsets.all(10.0),
                 child: Text("You are the man",
-                    style: Theme.of(context).textTheme.title),
+                    style: Theme.of(context).accentTextTheme.title),
               ),
               Container(
+                padding: EdgeInsets.symmetric(vertical: 15.0),
                 child: Text("Tip maybe?",
-                    style: Theme.of(context).textTheme.subtitle),
+                    style: Theme.of(context).accentTextTheme.subtitle),
               ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 35.0),
                 child: SliderTheme(
-                  data: SliderTheme.of(context)
-                      .copyWith(showValueIndicator: ShowValueIndicator.always),
+                  data: SliderTheme.of(context).copyWith(
+                    showValueIndicator: ShowValueIndicator.always,
+                    valueIndicatorTextStyle: Theme.of(context).textTheme.body2,
+                  ),
                   child: Slider(
                     activeColor: Theme.of(context).accentColor,
                     inactiveColor: Theme.of(context).primaryColorLight,
@@ -106,7 +109,7 @@ class PaymentState extends State<Payment> {
                     tag: 'totalAmountToPay',
                     child: Text(
                       formatPrice(_getTotalAmount()),
-                      style: Theme.of(context).textTheme.title,
+                      style: Theme.of(context).accentTextTheme.subtitle,
                     ),
                   ),
                 ),
@@ -116,7 +119,13 @@ class PaymentState extends State<Payment> {
                 child: RaisedButton(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Text("Pay Now"), Icon(Icons.check)],
+                    children: [
+                      Text(
+                        "Pay Now",
+                        style: Theme.of(context).textTheme.body1,
+                      ),
+                      Icon(Icons.check)
+                    ],
                   ),
                   onPressed: payClicked,
                 ),
@@ -160,9 +169,10 @@ class PaymentState extends State<Payment> {
     String sign = modifier.sign;
     return ListTile(
       dense: true,
-      title: Text(modifier.name, style: Theme.of(context).textTheme.body2),
+      title:
+          Text(modifier.name, style: Theme.of(context).accentTextTheme.body2),
       trailing: Text("$sign ${formatPriceNoSign(modifier.amount)}",
-          style: Theme.of(context).textTheme.body2),
+          style: Theme.of(context).accentTextTheme.body2),
     );
   }
 }
