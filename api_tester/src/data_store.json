@@ -1,0 +1,54 @@
+{
+  "avatars": [
+    "images/msg_avatars/iconfinder_beverage-juice-refreshment-soft-drink__3558091.svg",
+    "images/msg_avatars/iconfinder_corn-shop-street-food-vegetable_3558120.svg",
+    "images/msg_avatars/iconfinder_dessert-pastry-baked-doughnut_3558119.svg",
+    "images/msg_avatars/iconfinder_food-car-street-delivery-mobile-kitchen_3558118.svg",
+    "images/msg_avatars/iconfinder_food-truck-hamburger-sell-facility_3558117.svg",
+    "images/msg_avatars/iconfinder_french-fries-snacks-fast-food_3558116.svg",
+    "images/msg_avatars/iconfinder_fried-chicken-thigh-fast-food_3558115.svg",
+    "images/msg_avatars/iconfinder_fried-dumplings-wonton-chinese_-food_3558092.svg",
+    "images/msg_avatars/iconfinder_fruit-car-street-sell-delivery_3558114.svg",
+    "images/msg_avatars/iconfinder_fruit-organic-plant-orange-vitamin_3558113.svg",
+    "images/msg_avatars/iconfinder_grilled-corn-vegetable-organic-plant_3558112.svg",
+    "images/msg_avatars/iconfinder_grilled-squid-seafood-animal-marine_3558111.svg",
+    "images/msg_avatars/iconfinder_hamburger-fast-food-patty-bread_3558110.svg",
+    "images/msg_avatars/iconfinder_hot-dogs-truck-food-delivery-street_3558109.svg",
+    "images/msg_avatars/iconfinder_ice-cream-cart-trolley-sweets_3558108.svg",
+    "images/msg_avatars/iconfinder_ice-cream-cup-sweets-frozen_3558107.svg",
+    "images/msg_avatars/iconfinder_instant-noodles-food-cup-precooked_3558106.svg",
+    "images/msg_avatars/iconfinder_kiosk-trolley-street-food-asian_3558105.svg",
+    "images/msg_avatars/iconfinder_meat-ball-food-sausage-barbecue_3558104.svg",
+    "images/msg_avatars/iconfinder_mochi-sweets-Japanese-food-cook_3558093.svg",
+    "images/msg_avatars/iconfinder_noodles-bowl-food-ramen-soup_3558103.svg",
+    "images/msg_avatars/iconfinder_noodles-shop-food-store-street_3558102.svg",
+    "images/msg_avatars/iconfinder_pizza-fast-food-bake-bread_3558094.svg",
+    "images/msg_avatars/iconfinder_rice-dish-food-cook-menu_3558101.svg",
+    "images/msg_avatars/iconfinder_sauce-seasoning-ketchup-liquid-flovouring_3558100.svg",
+    "images/msg_avatars/iconfinder_sausage-burger-bread-breakfast-food_3558099.svg",
+    "images/msg_avatars/iconfinder_shrimp-fried-rice-food-dish_3558098.svg",
+    "images/msg_avatars/iconfinder_shrimp-prawn-seafood-animal-marine_3558097.svg",
+    "images/msg_avatars/iconfinder_smoothie-truck-juice-bar-fruit_3558096.svg",
+    "images/msg_avatars/iconfinder_street-food-shop-noodle-vender_3558095.svg"
+  ],
+
+  "dummyMessages": [
+    {
+      "title": "Hi there",
+      "avatar": "/images/msg_avatars/iconfinder_food-truck-hamburger-sell-facility_3558117.svg"
+    },
+    {
+      "title": "Bye man",
+      "avatar": "/images/msg_avatars/iconfinder_hot-dogs-truck-food-delivery-street_3558109.svg"
+    },
+    {
+      "title": "Dont want",
+      "avatar": "/images/msg_avatars/iconfinder_street-food-shop-noodle-vender_3558095.svg"
+    }
+  ],
+  "dummyMessageContents": {
+    "Hi there": "{\"Hi\": 8}",
+    "Bye man": "{\"tags\": [ \"ut\", \"mollit\", \"commodo\", \"sint\", \"consequat\", \"in\", \"mollit\" ], \"friends\": [ { \"id\": 0, \"name\": \"Strong Patton\" } ] }",
+    "Dont want": "{\"tags\": [ \"ut\", \"mollit\", \"commodo\", \"sint\", \"consequat\", \"in\", \"mollit\" ], \"friends\": [ { \"id\": 0, \"name\": \"Strong Patton\" } ] }"
+  }
+}
